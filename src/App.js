@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import DashboardToday from './pages/DashboardToday';
+import DashboardComparison from './pages/DashboardComparison';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <nav style={{display:'flex', flexDirection:'column'}}>
+        <ul style={{display:'flex',justifyContent:'space-evenly',listStyle:'none', fontSize:'1.5rem'}}>
+          <li><Link to="/today">Today's Sales</Link></li>
+          <li><Link to="/comparison">Sales Comparison</Link></li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route path="/today" element={<DashboardToday />} />
+        <Route path="/comparison" element={<DashboardComparison />} />
+        <Route path="/" element={<DashboardToday />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
+
